@@ -346,6 +346,11 @@ export function getDataPoints(data, minRange, maxRange, xAxisPoints, eachSpacing
 }
 
 export function getYAxisTextList(series, opts, config) {
+    //when series is empty array
+    if(!(series && series.length)){
+
+        return [];
+    }
     let data = dataCombine(series);
     // remove null from data
     data = data.filter((item) => {
