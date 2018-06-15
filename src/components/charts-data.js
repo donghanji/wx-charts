@@ -346,16 +346,16 @@ export function getDataPoints(data, minRange, maxRange, xAxisPoints, eachSpacing
 }
 
 export function getYAxisTextList(series, opts, config) {
-    //when series is empty array
-    if(!(series && series.length)){
-
-        return [];
-    }
     let data = dataCombine(series);
     // remove null from data
     data = data.filter((item) => {
         return item !== null;
     });
+    //when series is an empty array,or after data.filter is empty
+    if(!(data && data.length)){
+
+        return [];
+    }
     let minData = Math.min.apply(this, data);
     let maxData = Math.max.apply(this, data);
     if (typeof opts.yAxis.min === 'number') {
